@@ -16,6 +16,8 @@ h1{font-size:1.5rem;margin:16px 0 4px}
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;margin-top:10px;border-radius:12px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:1rem;font-weight:500}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
 .btn:active{opacity:.8}
+.alt{display:block;margin-top:12px;font-size:.85rem;color:var(--mute)}
+.alt[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -23,10 +25,21 @@ h1{font-size:1.5rem;margin:16px 0 4px}
   <img class="photo" src="photo.jpg" alt="Lucas Constancio">
   <h1>Lucas Constancio</h1>
   <p class="org">Saint-Gobain Sekurit Service &amp; Glassdrive Portugal</p>
-  <a class="btn primary" href="LucasConstancio.vcf" download>Save contact</a>
+  <a class="btn primary" id="save" href="LucasConstancio.vcf" download>Save contact</a>
+  <a class="alt" id="alt" href="LucasConstancio.vcf" download hidden>Download full contact (.vcf, with photo)</a>
   <a class="btn" href="tel:+351910257211">Call +351 910 257 211</a>
   <a class="btn" href="mailto:lucas.constancio@saint-gobain.com">Send email</a>
   <a class="btn" href="https://www.linkedin.com/in/lucasconstancio" target="_blank" rel="noopener">LinkedIn</a>
 </main>
+<script>
+if(/Android/i.test(navigator.userAgent)){
+  var e=encodeURIComponent;
+  document.getElementById('save').href='intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.dir/contact;'
+   +'S.name='+e('Lucas Constancio')+';S.phone='+e('+351910257211')+';S.email='+e('lucas.constancio@saint-gobain.com')
+   +';S.company='+e('Saint-Gobain Sekurit Service & Glassdrive Portugal')+';end';
+  document.getElementById('save').removeAttribute('download');
+  document.getElementById('alt').hidden=false;
+}
+</script>
 </body>
 </html>
