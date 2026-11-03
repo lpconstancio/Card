@@ -25,21 +25,14 @@ h1{font-size:1.5rem;margin:16px 0 4px}
   <img class="photo" src="photo.jpg" alt="Lucas Constancio">
   <h1>Lucas Constancio</h1>
   <p class="org">Saint-Gobain Sekurit Service &amp; Glassdrive Portugal</p>
-  <a class="btn primary" id="save" href="LucasConstancio.vcf" download>Save contact</a>
-  <a class="alt" id="alt" href="LucasConstancio.vcf" download hidden>Download full contact (.vcf, with photo)</a>
+  <a class="btn primary" href="LucasConstancio.vcf" download>Save contact</a>
+  <p class="alt" id="hint" hidden>On Android: after the download, tap <b>Open</b> and choose Contacts.</p>
   <a class="btn" href="tel:+351910257211">Call +351 910 257 211</a>
   <a class="btn" href="mailto:lucas.constancio@saint-gobain.com">Send email</a>
   <a class="btn" href="https://www.linkedin.com/in/lucasconstancio" target="_blank" rel="noopener">LinkedIn</a>
 </main>
 <script>
-if(/Android/i.test(navigator.userAgent)){
-  var e=encodeURIComponent;
-  document.getElementById('save').href='intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.dir/contact;'
-   +'S.name='+e('Lucas Constancio')+';S.phone='+e('+351910257211')+';S.email='+e('lucas.constancio@saint-gobain.com')
-   +';S.company='+e('Saint-Gobain Sekurit Service & Glassdrive Portugal')+';end';
-  document.getElementById('save').removeAttribute('download');
-  document.getElementById('alt').hidden=false;
-}
+if(/Android/i.test(navigator.userAgent)){document.getElementById('hint').hidden=false;}
 </script>
 </body>
 </html>
